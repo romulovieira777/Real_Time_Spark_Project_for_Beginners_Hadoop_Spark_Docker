@@ -1,0 +1,48 @@
+Create Single Node Hadoop Spark Cluster:
+========================================
+
+Download datamaking_hadoop_spark_cluster_image.zip file
+
+Extract datamaking_hadoop_spark_cluster_image file
+
+cd datamaking_hadoop_spark_cluster_image
+
+Run below command to create set of docker images for Apache Hadoop, Apache Spark, Apache Hive and PostgreSQL
+
+./1_create_hadoop_spark_image.sh
+
+
+Run below command to create set of containers for Apache Hadoop, Apache Spark, Apache Hive and PostgreSQL to build a Create Single Node Hadoop Spark Cluster
+
+./2_create_hadoop_spark_cluster.sh create
+
+
+
+Commonly used docker commands:
+
+Stop All Containers:
+====================
+
+docker stop $(docker ps -a -q)
+
+docker rm $(docker ps -a -q)
+
+Remove All Images:
+==================
+
+docker images -a
+
+docker rmi $(docker images -a -q)
+
+# Prune everything
+docker system prune
+
+# Only prune images
+docker image prune
+
+docker volume prune
+
+
+
+
+
