@@ -1,0 +1,13 @@
+Release Notes - Hive - Version 2.3.7
+
+
+
+** Bug
+    * [HIVE-21508] - ClassCastException when initializing HiveMetaStoreClient on JDK10 or newer
+    * [HIVE-23086] - Two tests fail on branch-2.3
+
+** New Feature
+    * [HIVE-22249] - Support Parquet through HCatalog
+
+** Improvement
+    * [HIVE-21980] - Parsing time can be high in case of deeply nested subqueries
