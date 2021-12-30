@@ -24,7 +24,7 @@ if __name__ == "__main__":
 
     message = None
     i = 0
-    #while True:
+    # while True:
     while i != 10:
         try:
             #print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))

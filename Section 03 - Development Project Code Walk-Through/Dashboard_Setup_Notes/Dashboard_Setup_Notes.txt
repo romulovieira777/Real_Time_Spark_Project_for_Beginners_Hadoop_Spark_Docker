@@ -1,0 +1,11 @@
+Dashboard Setup:
+----------------
+
+django-admin startproject server_status_monitoring
+
+python manage.py startapp dashboard
+
+python manage.py makemigrations dashboard
+
+python manage.py migrate dashboard
+
