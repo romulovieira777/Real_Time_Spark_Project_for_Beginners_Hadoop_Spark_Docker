@@ -1,0 +1,40 @@
+Run Real Time Streaming Data Pipeline using Spark Cluster On Docker:
+====================================================================
+
+Connect to MasterNode Container and create folder/directory structure for code and dependency jars
+
+docker exec -it masternode bash
+
+mkdir -p /opt/workarea/code
+
+mkdir -p /opt/workarea/spark_jars
+
+
+Copy/upload the data pipeline code and dependency jars from Docker Terminal(Local system/laptop) to MasterNode container
+
+-- PySpark Code
+cd /c/docker_workarea/spark_job/datamaking_real_time_data_pipeline
+
+docker cp real_time_streaming_data_pipeline.py masternode:/opt/workarea/code/
+
+
+-- Dependency jars
+
+cd /c/docker_workarea/spark_job/spark_dependency_jars
+
+docker cp commons-pool2-2.8.1.jar masternode:/opt/workarea/spark_jars
+
+docker cp kafka-clients-2.6.0.jar masternode:/opt/workarea/spark_jars
+
+docker cp postgresql-42.2.16.jar masternode:/opt/workarea/spark_jars
+
+docker cp spark-sql-kafka-0-10_2.12-3.0.1.jar masternode:/opt/workarea/spark_jars
+
+docker cp spark-streaming-kafka-0-10-assembly_2.12-3.0.1.jar masternode:/opt/workarea/spark_jars
+
+
+Connect to MasterNode Container and run the data piple using spark-submit command
+
+spark-submit --master local[*] --jars /opt/workarea/spark_jars/commons-pool2-2.8.1.jar,/opt/workarea/spark_jars/postgresql-42.2.16.jar,/opt/workarea/spark_jars/spark-sql-kafka-0-10_2.12-3.0.1.jar,/opt/workarea/spark_jars/kafka-clients-2.6.0.jar,/opt/workarea/spark_jars/spark-streaming-kafka-0-10-assembly_2.12-3.0.1.jar --conf spark.executor.extraClassPath=/opt/workarea/spark_jars/commons-pool2-2.8.1.jar:/opt/workarea/spark_jars/postgresql-42.2.16.jar:/opt/workarea/spark_jars/spark-sql-kafka-0-10_2.12-3.0.1.jar:/opt/workarea/spark_jars/kafka-clients-2.6.0.jar:/opt/workarea/spark_jars/spark-streaming-kafka-0-10-assembly_2.12-3.0.1.jar --conf spark.executor.extraLibrary=/opt/workarea/spark_jars/commons-pool2-2.8.1.jar:/opt/workarea/spark_jars/postgresql-42.2.16.jar:/opt/workarea/spark_jars/spark-sql-kafka-0-10_2.12-3.0.1.jar:/opt/workarea/spark_jars/kafka-clients-2.6.0.jar:/opt/workarea/spark_jars/spark-streaming-kafka-0-10-assembly_2.12-3.0.1.jar --conf spark.driver.extraClassPath=/opt/workarea/spark_jars/commons-pool2-2.8.1.jar:/opt/workarea/spark_jars/postgresql-42.2.16.jar:/opt/workarea/spark_jars/spark-sql-kafka-0-10_2.12-3.0.1.jar:/opt/workarea/spark_jars/kafka-clients-2.6.0.jar:/opt/workarea/spark_jars/spark-streaming-kafka-0-10-assembly_2.12-3.0.1.jar real_time_streaming_data_pipeline.py
+
+
